@@ -43,13 +43,11 @@ export const listSchools = async (req, res, next) => {
       }))
       .sort((a, b) => a.distance - b.distance);
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Schools fetched successfully.",
-        data: sorted,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Schools fetched successfully.",
+      data: sorted,
+    });
   } catch (err) {
     next(err);
   }
