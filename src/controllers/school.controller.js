@@ -25,6 +25,12 @@ export const listSchools = async (req, res, next) => {
 
     const [schools] = await pool.execute(`SELECT * FROM schools`);
 
+    if (schools.length === 0) {
+      return res
+        .status(200)
+        .json({ success: true, message: "No schools found.", data: [] });
+    }
+
     const sorted = schools
       .map((school) => ({
         ...school,
@@ -37,7 +43,13 @@ export const listSchools = async (req, res, next) => {
       }))
       .sort((a, b) => a.distance - b.distance);
 
-    res.status(200).json({ data: sorted });
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "Schools fetched successfully.",
+        data: sorted,
+      });
   } catch (err) {
     next(err);
   }

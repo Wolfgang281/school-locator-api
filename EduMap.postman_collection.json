@@ -1,0 +1,519 @@
+{
+  "info": {
+    "name": "EduMap - School Management API",
+    "description": "Complete API collection for EduMap School Management System.\n\nBase URL: Change the `base_url` variable to your deployed URL.\n\nAPIs:\n- POST /addSchool — Add a new school\n- GET /listSchools — List schools sorted by proximity\n\nDeveloped with Node.js, Express.js, MySQL.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "description": "Change to deployed URL when live"
+    }
+  ],
+  "item": [
+    {
+      "name": "Add School",
+      "description": "All test cases for POST /addSchool",
+      "item": [
+        {
+          "name": "Add School - Valid 1",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ryan International School\",\n  \"address\": \"Sector 21, Dwarka, New Delhi\",\n  \"latitude\": 28.5921,\n  \"longitude\": 77.0460\n}"
+            },
+            "description": "Valid input — should return 201."
+          },
+          "response": [
+            {
+              "name": "201 - School Added",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"School added successfully.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add School - Valid 2",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kendriya Vidyalaya\",\n  \"address\": \"IIT Campus, Hauz Khas, New Delhi\",\n  \"latitude\": 28.5459,\n  \"longitude\": 77.1926\n}"
+            },
+            "description": "Valid input — should return 201."
+          },
+          "response": [
+            {
+              "name": "201 - School Added",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"School added successfully.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add School - Valid 3",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"St. Columba's School\",\n  \"address\": \"Ashok Place, New Delhi\",\n  \"latitude\": 28.6353,\n  \"longitude\": 77.2010\n}"
+            },
+            "description": "Valid input — should return 201."
+          },
+          "response": [
+            {
+              "name": "201 - School Added",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"School added successfully.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add School - Valid 4",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Amity International School\",\n  \"address\": \"Sector 44, Noida\",\n  \"latitude\": 28.5594,\n  \"longitude\": 77.3489\n}"
+            },
+            "description": "Valid input — should return 201."
+          },
+          "response": [
+            {
+              "name": "201 - School Added",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"School added successfully.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add School - Valid 5",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"The Shri Ram School\",\n  \"address\": \"Vasant Vihar, New Delhi\",\n  \"latitude\": 28.5587,\n  \"longitude\": 77.1580\n}"
+            },
+            "description": "Valid input — should return 201."
+          },
+          "response": [
+            {
+              "name": "201 - School Added",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"School added successfully.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Duplicate School Name",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ryan International School\",\n  \"address\": \"Some Other Address\",\n  \"latitude\": 28.5921,\n  \"longitude\": 77.0460\n}"
+            },
+            "description": "Duplicate name — should return 409."
+          },
+          "response": [
+            {
+              "name": "409 - Conflict",
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"A school with this name or address already exists.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Missing Name",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"Mathura Road, New Delhi\",\n  \"latitude\": 28.5494,\n  \"longitude\": 77.2001\n}"
+            },
+            "description": "Missing name field — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"name\\\" is required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Missing Address",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Some School\",\n  \"latitude\": 28.5494,\n  \"longitude\": 77.2001\n}"
+            },
+            "description": "Missing address field — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"address\\\" is required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Empty Body",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Empty body — should return 400 with all missing fields."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"name\\\" is required, \\\"address\\\" is required, \\\"latitude\\\" is required, \\\"longitude\\\" is required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Invalid Latitude (out of range)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test School\",\n  \"address\": \"Some Address\",\n  \"latitude\": 999,\n  \"longitude\": 77.2001\n}"
+            },
+            "description": "Latitude out of range — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"latitude\\\" must be less than or equal to 90\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Invalid Longitude (out of range)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test School\",\n  \"address\": \"Some Address\",\n  \"latitude\": 28.5494,\n  \"longitude\": 999\n}"
+            },
+            "description": "Longitude out of range — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"longitude\\\" must be less than or equal to 180\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Invalid Types (strings for lat/lon)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test School\",\n  \"address\": \"Some Address\",\n  \"latitude\": \"abc\",\n  \"longitude\": \"xyz\"\n}"
+            },
+            "description": "Wrong types for lat/lon — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"latitude\\\" must be a number, \\\"longitude\\\" must be a number\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Empty Name String",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/addSchool" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"address\": \"Some Address\",\n  \"latitude\": 28.5494,\n  \"longitude\": 77.2001\n}"
+            },
+            "description": "Empty name string — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"name\\\" is not allowed to be empty\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "List Schools",
+      "description": "All test cases for GET /listSchools",
+      "item": [
+        {
+          "name": "List Schools - New Delhi",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/listSchools?latitude=28.6139&longitude=77.2090",
+              "host": ["{{base_url}}"],
+              "path": ["listSchools"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "28.6139",
+                  "description": "User latitude (New Delhi)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "77.2090",
+                  "description": "User longitude (New Delhi)"
+                }
+              ]
+            },
+            "description": "Valid coordinates — returns schools sorted by distance from New Delhi."
+          },
+          "response": [
+            {
+              "name": "200 - Schools Fetched",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Schools fetched successfully.\",\n  \"data\": [\n    {\n      \"id\": 3,\n      \"name\": \"St. Columba's School\",\n      \"address\": \"Ashok Place, New Delhi\",\n      \"latitude\": 28.6353,\n      \"longitude\": 77.2010,\n      \"distance\": 2.64\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Kendriya Vidyalaya\",\n      \"address\": \"IIT Campus, Hauz Khas, New Delhi\",\n      \"latitude\": 28.5459,\n      \"longitude\": 77.1926,\n      \"distance\": 7.72\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Schools - Noida",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/listSchools?latitude=28.5355&longitude=77.3910",
+              "host": ["{{base_url}}"],
+              "path": ["listSchools"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "28.5355",
+                  "description": "User latitude (Noida)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "77.3910",
+                  "description": "User longitude (Noida)"
+                }
+              ]
+            },
+            "description": "Valid coordinates — returns schools sorted by distance from Noida."
+          },
+          "response": [
+            {
+              "name": "200 - Schools Fetched",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Schools fetched successfully.\",\n  \"data\": [\n    {\n      \"id\": 4,\n      \"name\": \"Amity International School\",\n      \"address\": \"Sector 44, Noida\",\n      \"latitude\": 28.5594,\n      \"longitude\": 77.3489,\n      \"distance\": 4.21\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Schools - Gurugram",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/listSchools?latitude=28.4595&longitude=77.0266",
+              "host": ["{{base_url}}"],
+              "path": ["listSchools"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "28.4595",
+                  "description": "User latitude (Gurugram)"
+                },
+                {
+                  "key": "longitude",
+                  "value": "77.0266",
+                  "description": "User longitude (Gurugram)"
+                }
+              ]
+            },
+            "description": "Valid coordinates — returns schools sorted by distance from Gurugram."
+          },
+          "response": [
+            {
+              "name": "200 - Schools Fetched",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Schools fetched successfully.\",\n  \"data\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "Missing Latitude",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/listSchools?longitude=77.2090",
+              "host": ["{{base_url}}"],
+              "path": ["listSchools"],
+              "query": [{ "key": "longitude", "value": "77.2090" }]
+            },
+            "description": "Missing latitude — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"latitude\\\" is required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Missing Both Params",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/listSchools",
+              "host": ["{{base_url}}"],
+              "path": ["listSchools"]
+            },
+            "description": "No query params — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"latitude\\\" is required, \\\"longitude\\\" is required\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Latitude Out of Range",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/listSchools?latitude=999&longitude=77.2090",
+              "host": ["{{base_url}}"],
+              "path": ["listSchools"],
+              "query": [
+                { "key": "latitude", "value": "999" },
+                { "key": "longitude", "value": "77.2090" }
+              ]
+            },
+            "description": "Latitude out of range — should return 400."
+          },
+          "response": [
+            {
+              "name": "400 - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"\\\"latitude\\\" must be less than or equal to 90\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
